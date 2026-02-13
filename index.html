@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Una Noche Especial 🕯️</title>
+    <style>
+        :root {
+            --color-bg-base: #1a0a0f;
+            --color-bg-elevated: #2d1520;
+            --color-text-primary: #ffe4e6;
+            --color-text-secondary: #fecdd3;
+            --color-accent: #ff1744;
+            --color-accent-glow: #f50057;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1a0a0f 0%, #4a1520 50%, #2d1520 100%);
+            color: var(--color-text-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 23, 68, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(245, 0, 87, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .invitation-card {
+            background: var(--color-bg-elevated);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 60px rgba(255, 23, 68, 0.3), 0 0 100px rgba(245, 0, 87, 0.2);
+            text-align: center;
+            position: relative;
+            border: 2px solid rgba(255, 23, 68, 0.3);
+            z-index: 1;
+        }
+
+        .invitation-card::before {
+            content: '🕯️';
+            position: absolute;
+            top: -30px;
+            right: 20px;
+            font-size: 40px;
+            animation: candleFlicker 2s ease-in-out infinite;
+        }
+
+        .invitation-card::after {
+            content: '🕯️';
+            position: absolute;
+            bottom: -25px;
+            left: 30px;
+            font-size: 35px;
+            animation: candleFlicker 2.5s ease-in-out infinite;
+        }
+
+        @keyframes candleFlicker {
+            0%, 100% { 
+                opacity: 1;
+                transform: translateY(0px);
+                filter: brightness(1);
+            }
+            25% { 
+                opacity: 0.9;
+                filter: brightness(1.2);
+            }
+            50% { 
+                opacity: 1;
+                transform: translateY(-8px);
+                filter: brightness(1.1);
+            }
+            75% { 
+                opacity: 0.85;
+                filter: brightness(1.15);
+            }
+        }
+
+        .music-note {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.15;
+            animation: floatMusic 4s ease-in-out infinite;
+        }
+
+        .music-note:nth-child(1) {
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .music-note:nth-child(2) {
+            top: 25%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+
+        .music-note:nth-child(3) {
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 2s;
+        }
+
+        .music-note:nth-child(4) {
+            bottom: 30%;
+            right: 10%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes floatMusic {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.15;
+            }
+            50% { 
+                transform: translateY(-15px) rotate(5deg);
+                opacity: 0.25;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .candle-decoration {
+            position: absolute;
+            font-size: 24px;
+            animation: candleFlicker 3s ease-in-out infinite;
+        }
+
+        .candle-left {
+            top: 50%;
+            left: -15px;
+            animation-delay: 0.5s;
+        }
+
+        .candle-right {
+            top: 50%;
+            right: -15px;
+            animation-delay: 1s;
+        }
+
+        .photo-container {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .couple-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--color-accent);
+            box-shadow: 0 8px 30px rgba(255, 23, 68, 0.4);
+            animation: heartPulse 1.5s infinite;
+        }
+
+        .candle-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: heartPulse 1.5s infinite;
+        }
+
+        @keyframes heartPulse {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.15); }
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .mystery-text {
+            font-style: italic;
+            color: var(--color-accent);
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .accept-btn {
+            background: var(--color-accent);
+            color: #ffffff;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(255, 23, 68, 0.4);
+        }
+
+        .accept-btn:hover {
+            background: var(--color-accent-glow);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(245, 0, 87, 0.6);
+        }
+
+        .accept-btn:active {
+            transform: translateY(0);
+        }
+
+        .details-section {
+            display: none;
+            margin-top: 30px;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .details-section.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .detail-item {
+            background: rgba(255, 23, 68, 0.1);
+            border: 1px solid rgba(255, 23, 68, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .detail-label {
+            font-size: 0.85rem;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .detail-value {
+            font-size: 1.2rem;
+            color: var(--color-text-primary);
+            font-weight: 500;
+        }
+
+        .detail-icon {
+            margin-right: 8px;
+        }
+
+        .dress-code {
+            background: rgba(236, 72, 153, 0.1);
+            border-color: rgba(236, 72, 153, 0.3);
+        }
+
+        .dress-code .detail-label {
+            color: #f9a8d4;
+        }
+
+        .footer-note {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            font-style: italic;
+        }
+
+        .heart {
+            color: #ef4444;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+        }
+
+        .sparkle {
+            display: inline-block;
+            animation: sparkle 2s infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="invitation-card">
+            <div class="music-note">🎵</div>
+            <div class="music-note">🎶</div>
+            <div class="music-note">🎵</div>
+            <div class="music-note">🎶</div>
+            <div class="candle-decoration candle-left">🕯️</div>
+            <div class="candle-decoration candle-right">🕯️</div>
+            <div class="candle-icon">💖</div>
+            <h1>Una Noche Especial</h1>
+            <p class="subtitle">
+                He preparado una sorpresa mágica para ti...<br>
+                Una experiencia única que no olvidarás
+            </p>
+            <div class="photo-container">
+                <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/dddc91f5-df30-47a7-b7c8-51c301af2192" alt="Nosotros" class="couple-photo">
+            </div>
+
+            <p class="mystery-text">
+                <span class="sparkle">✨</span> Una experiencia inolvidable te espera <span class="sparkle">✨</span>
+            </p>
+
+            <button class="accept-btn" id="acceptBtn" onclick="revealDetails()">
+                Aceptar la Invitación
+            </button>
+
+            <div class="details-section" id="detailsSection">
+                <div class="detail-item">
+                    <div class="detail-label">
+                        <span class="detail-icon">📍</span> Lugar
+                    </div>
+                    <div class="detail-value">Madrid</div>
+                </div>
+
+                <div class="detail-item">
+                    <div class="detail-label">
+                        <span class="detail-icon">🕘</span> Hora
+                    </div>
+                    <div class="detail-value">9:00 PM</div>
+                </div>
+
+                <div class="detail-item dress-code">
+                    <div class="detail-label">
+                        <span class="detail-icon">👗</span> Código de Vestimenta
+                    </div>
+                    <div class="detail-value">Elegante / Semiformal</div>
+                </div>
+
+                <div class="detail-item">
+                    <div class="detail-label">
+                        <span class="detail-icon">🎵</span> Nota Especial
+                    </div>
+                    <div class="detail-value">Una melodía especial dedicada a la persona más especial de mi vida</div>
+                </div>
+
+                <p class="footer-note">
+                    Prepárate para una noche mágica <span class="heart">❤️</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function revealDetails() {
+            const detailsSection = document.getElementById('detailsSection');
+            const acceptBtn = document.getElementById('acceptBtn');
+            
+            detailsSection.classList.add('show');
+            acceptBtn.style.display = 'none';
+            
+            // Pequeña vibración si el navegador lo soporta
+            if (navigator.vibrate) {
+                navigator.vibrate(200);
+            }
+        }
+    </script>
+</body>
+</html>
