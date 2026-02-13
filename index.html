@@ -328,6 +328,71 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0.3; }
         }
+
+        /* Countdown styles */
+        .countdown-container {
+            display: block;
+        }
+
+        .countdown-container.hidden {
+            display: none;
+        }
+
+        .invitation-content {
+            display: none;
+        }
+
+        .invitation-content.show {
+            display: block;
+        }
+
+        .lock-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: heartPulse 1.5s infinite;
+        }
+
+        .countdown-title {
+            font-size: 1.8rem;
+            color: var(--color-accent);
+            margin-bottom: 20px;
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .countdown-item {
+            background: rgba(255, 23, 68, 0.1);
+            border: 1px solid rgba(255, 23, 68, 0.3);
+            border-radius: 12px;
+            padding: 20px 10px;
+        }
+
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+
+        .countdown-message {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            font-style: italic;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -339,61 +404,123 @@
             <div class="music-note">🎶</div>
             <div class="candle-decoration candle-left">🕯️</div>
             <div class="candle-decoration candle-right">🕯️</div>
-            <div class="candle-icon">💖</div>
-            <h1>Una Noche Especial</h1>
-            <p class="subtitle">
-                He preparado una sorpresa mágica para ti...<br>
-                Una noche única...
-            </p>
-            <div class="photo-container">
-                <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/dddc91f5-df30-47a7-b7c8-51c301af2192" alt="Nosotros" class="couple-photo">
+            
+            <!-- Countdown Section -->
+            <div class="countdown-container" id="countdownContainer">
+                <div class="lock-icon">🔒</div>
+                <h1 class="countdown-title">Tu Sorpresa se Revelará Pronto...</h1>
+                <div class="countdown-grid">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">00</span>
+                        <span class="countdown-label">Días</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">Horas</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">Minutos</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">Segundos</span>
+                    </div>
+                </div>
+                <p class="countdown-message">
+                    <span class="sparkle">✨</span> Algo especial te espera <span class="sparkle">✨</span>
+                </p>
             </div>
 
-            <p class="mystery-text">
-                <span class="sparkle">✨</span> Una experiencia inolvidable te espera <span class="sparkle">✨</span>
-            </p>
-
-            <button class="accept-btn" id="acceptBtn" onclick="revealDetails()">
-                Aceptar la Invitación
-            </button>
-
-            <div class="details-section" id="detailsSection">
-                <div class="detail-item">
-                    <div class="detail-label">
-                        <span class="detail-icon">📍</span> Lugar
-                    </div>
-                    <div class="detail-value">Madrid</div>
-                </div>
-
-                <div class="detail-item">
-                    <div class="detail-label">
-                        <span class="detail-icon">🕘</span> Hora
-                    </div>
-                    <div class="detail-value">9:00 PM</div>
-                </div>
-
-                <div class="detail-item dress-code">
-                    <div class="detail-label">
-                        <span class="detail-icon">👗</span> Código de Vestimenta
-                    </div>
-                    <div class="detail-value">Elegante / Semiformal / Smart Casual</div>
-                </div>
-
-                <div class="detail-item">
-                    <div class="detail-label">
-                        <span class="detail-icon">🎵</span> Nota Especial
-                    </div>
-                    <div class="detail-value">Una melodía especial dedicada a la persona más especial de mi vida</div>
-                </div>
-
-                <p class="footer-note">
-                    Prepárate para una noche mágica. Te amo <span class="heart">❤️</span>
+            <!-- Invitation Content (hidden until countdown ends) -->
+            <div class="invitation-content" id="invitationContent">
+                <div class="candle-icon">💖</div>
+                <h1>Una Noche Especial</h1>
+                <p class="subtitle">
+                    He preparado una sorpresa mágica para ti...<br>
+                    Una experiencia única que no olvidarás
                 </p>
+                <div class="photo-container">
+                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/dddc91f5-df30-47a7-b7c8-51c301af2192" alt="Nosotros" class="couple-photo">
+                </div>
+
+                <p class="mystery-text">
+                    <span class="sparkle">✨</span> Una experiencia inolvidable te espera <span class="sparkle">✨</span>
+                </p>
+
+                <button class="accept-btn" id="acceptBtn" onclick="revealDetails()">
+                    Aceptar la Invitación
+                </button>
+
+                <div class="details-section" id="detailsSection">
+                    <div class="detail-item">
+                        <div class="detail-label">
+                            <span class="detail-icon">📍</span> Lugar
+                        </div>
+                        <div class="detail-value">Madrid</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">
+                            <span class="detail-icon">🕘</span> Hora
+                        </div>
+                        <div class="detail-value">9:00 PM</div>
+                    </div>
+
+                    <div class="detail-item dress-code">
+                        <div class="detail-label">
+                            <span class="detail-icon">👗</span> Código de Vestimenta
+                        </div>
+                        <div class="detail-value">Elegante / Semiformal</div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-label">
+                            <span class="detail-icon">🎵</span> Nota Especial
+                        </div>
+                        <div class="detail-value">Una melodía especial dedicada a la persona más especial de mi vida</div>
+                    </div>
+
+                    <p class="footer-note">
+                        Prepárate para una noche mágica <span class="heart">❤️</span>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
+        // Target date: February 14, 2026 at 18:00 (6:00 PM) Madrid time
+        const targetDate = new Date('2026-02-14T00:08:00+01:00');
+
+        function updateCountdown() {
+            const now = new Date();
+            const difference = targetDate - now;
+
+            // Check if countdown has finished
+            if (difference <= 0) {
+                document.getElementById('countdownContainer').classList.add('hidden');
+                document.getElementById('invitationContent').classList.add('show');
+                return;
+            }
+
+            // Calculate time units
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            // Update display
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        // Update countdown immediately and then every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
         function revealDetails() {
             const detailsSection = document.getElementById('detailsSection');
             const acceptBtn = document.getElementById('acceptBtn');
